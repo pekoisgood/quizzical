@@ -50,9 +50,7 @@ function App() {
   function checkScore(){
     let checked = null
     quizData.forEach(questions => {
-        if(questions.selected){
-          return questions.selected === questions.correct_answer ? setScore(prevScore=> prevScore+1) : score
-        }else{
+        if(questions.selected === null){
           checked = false
         }
     })
@@ -60,6 +58,9 @@ function App() {
       setAllCheck(false)
     }else if(checked === null){
       setShowScore(prev => !prev)
+      quizData.forEach(questions => {
+          return questions.selected === questions.correct_answer ? setScore(prevScore=> prevScore+1) : score
+    })
     }
   }
   
